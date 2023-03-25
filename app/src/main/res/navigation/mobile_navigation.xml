@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.mygroceryapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.mygroceryapp.ui.profile.ProfileFragment"
+        android:label="profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_category"
+        android:name="com.example.mygroceryapp.ui.category.CategoryFragment"
+        android:label="category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/nav_offer"
+        android:name="com.example.mygroceryapp.OfferFragment"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_offer" />
+    <fragment
+        android:id="@+id/nav_newProduct"
+        android:name="com.example.mygroceryapp.NewProductsFragment"
+        android:label="@string/new_products"
+        tools:layout="@layout/fragment_new_products" />
+    <fragment
+        android:id="@+id/nav_myOrder"
+        android:name="com.example.mygroceryapp.MyOrderFragment"
+        android:label="@string/my_order"
+        tools:layout="@layout/fragment_my_order" />
+    <fragment
+        android:id="@+id/nav_myCart"
+        android:name="com.example.mygroceryapp.MyCartFragment"
+        android:label="@string/my_cart"
+        tools:layout="@layout/fragment_my_cart" />
+</navigation>

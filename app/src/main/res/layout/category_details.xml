@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFD1DA">
+
+        <ImageView
+            android:id="@+id/iv_category"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/image_category"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/n_cereals"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_price"
+            app:layout_constraintStart_toEndOf="@id/iv_category"
+            app:layout_constraintTop_toTopOf="@id/iv_category"
+            tools:text="name" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@id/tv_count"
+            app:layout_constraintStart_toEndOf="@id/iv_category"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="price"/>
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/iv_inc"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            app:layout_constraintStart_toEndOf="@id/iv_category"
+            app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/_1_count"
+            app:layout_constraintStart_toEndOf="@id/iv_plus"
+            app:layout_constraintTop_toBottomOf="@id/tv_price"
+
+            />
+
+        <ImageView
+            android:id="@+id/iv_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/iv_dec"
+            android:src="@drawable/ic_baseline_remove_circle_outline_24"
+            app:layout_constraintStart_toEndOf="@id/tv_count"
+            app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+        <Button
+            android:id="@+id/btn_buy_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_bg"
+            android:backgroundTint="@color/red"
+            android:text="@string/buy_now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

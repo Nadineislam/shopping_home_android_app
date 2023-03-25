@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="6dp"
+    app:cardCornerRadius="8dp"
+    android:elevation="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv2_category"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/n_cereals"/>
+        <TextView
+            android:id="@+id/view_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="9dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/view_desc"
+            app:layout_constraintStart_toEndOf="@id/iv2_category"
+            app:layout_constraintTop_toTopOf="@id/iv2_category"
+            tools:text="Name"/>
+        <TextView
+            android:id="@+id/view_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_marginStart="9dp"
+            app:layout_constraintStart_toEndOf="@id/iv2_category"
+            app:layout_constraintBottom_toTopOf="@id/view_price"
+            app:layout_constraintTop_toBottomOf="@id/view_name"
+            tools:text="Description"
+            />
+        <TextView
+            android:id="@+id/view_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/iv2_category"
+            app:layout_constraintTop_toBottomOf="@id/view_desc"
+            app:layout_constraintBottom_toBottomOf="@id/iv2_category"
+            tools:text="Price 30"/>
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
