@@ -22,9 +22,6 @@
             android:name=".Activities.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.CategoryDetailsActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.SignUpActivity"
             android:exported="true">
             <intent-filter>

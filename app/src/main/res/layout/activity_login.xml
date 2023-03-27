@@ -18,7 +18,7 @@
         tools:layout_editor_absoluteX="108dp" />
 
     <EditText
-        android:id="@+id/log_username"
+        android:id="@+id/log_email"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -46,7 +46,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/log_username"
+        app:layout_constraintTop_toBottomOf="@id/log_email"
         app:layout_constraintWidth_percent=".8" />
 
     <Button
