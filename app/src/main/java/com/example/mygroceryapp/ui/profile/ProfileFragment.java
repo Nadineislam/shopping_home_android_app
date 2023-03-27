@@ -1,12 +1,10 @@
 package com.example.mygroceryapp.ui.profile;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -29,12 +27,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class ProfileFragment extends Fragment {
-FirebaseStorage storage;
-FirebaseAuth auth;
-FirebaseDatabase db;
-Uri imageUri;
+    FirebaseStorage storage;
+    FirebaseAuth auth;
+    FirebaseDatabase db;
+    Uri imageUri;
     private FragmentProfileBinding binding;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,33 +40,21 @@ Uri imageUri;
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        storage = FirebaseStorage.getInstance();
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance();
+        binding.btnUpdate.setOnClickListener(view -> {
 
-
-
-        storage=FirebaseStorage.getInstance();
-        auth=FirebaseAuth.getInstance();
-        db=FirebaseDatabase.getInstance();
-        binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
         });
-        binding.ivPerson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launcher.launch("image/*");
-                
-            }
-        });
-        String s =FirebaseAuth.getInstance().getUid();
+        binding.ivPerson.setOnClickListener(view -> launcher.launch("image/*"));
+        String s = FirebaseAuth.getInstance().getUid();
 
 
         db.getReference().child("Users").child(s)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserModel userModel=snapshot.getValue(UserModel.class);
+                        UserModel userModel = snapshot.getValue(UserModel.class);
                         Glide.with(getContext()).load(userModel.getProfile_picture()).into(binding.ivPerson);
                     }
 
@@ -80,14 +65,15 @@ Uri imageUri;
                 });
         return root;
     }
-    ActivityResultLauncher <String> launcher=registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+
+    ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
-            if(result!=null);
+            if (result != null) ;
             binding.ivPerson.setImageURI(result);
-            imageUri=result;
+            imageUri = result;
 
-            final StorageReference reference=storage.getReference().child("profile_picture")
+            final StorageReference reference = storage.getReference().child("profile_picture")
                     .child(FirebaseAuth.getInstance().getUid());
             reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override

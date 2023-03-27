@@ -24,12 +24,9 @@ import com.example.mygroceryapp.Products.PopularProducts;
 import com.example.mygroceryapp.Products.RecommendedProducts;
 import com.example.mygroceryapp.Products.ViewAllProducts;
 import com.example.mygroceryapp.databinding.FragmentHomeBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -67,20 +64,17 @@ public class HomeFragment extends Fragment {
 
         db.collection("PopularProducts")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                PopularProducts popularModel = document.toObject(PopularProducts.class);
-                                popularModels.add(popularModel);
-                                popularAdapter.notifyDataSetChanged();
-                                binding.progressBar.setVisibility(View.GONE);
-                                binding.scrollView.setVisibility(View.VISIBLE);
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "empty", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            PopularProducts popularModel = document.toObject(PopularProducts.class);
+                            popularModels.add(popularModel);
+                            popularAdapter.notifyDataSetChanged();
+                            binding.progressBar.setVisibility(View.GONE);
+                            binding.scrollView.setVisibility(View.VISIBLE);
                         }
+                    } else {
+                        Toast.makeText(getActivity(), "empty", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -94,18 +88,15 @@ public class HomeFragment extends Fragment {
 
         db.collection("HomeProducts")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                HomeProducts homeProducts = document.toObject(HomeProducts.class);
-                                homeProductsArrayList.add(homeProducts);
-                                homeAdapter.notifyDataSetChanged();
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "empty", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            HomeProducts homeProducts = document.toObject(HomeProducts.class);
+                            homeProductsArrayList.add(homeProducts);
+                            homeAdapter.notifyDataSetChanged();
                         }
+                    } else {
+                        Toast.makeText(getActivity(), "empty", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -173,17 +164,14 @@ public class HomeFragment extends Fragment {
 
     private void searchProduct(String type) {
         if (!type.isEmpty()) {
-            db.collection("ViewAllProducts").whereEqualTo("type", type).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        viewAllProducts.clear();
+            db.collection("ViewAllProducts").whereEqualTo("type", type).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    viewAllProducts.clear();
+                    viewAllAdapter.notifyDataSetChanged();
+                    for (DocumentSnapshot document : task.getResult().getDocuments()) {
+                        ViewAllProducts viewAllProducts2 = document.toObject(ViewAllProducts.class);
+                        viewAllProducts.add(viewAllProducts2);
                         viewAllAdapter.notifyDataSetChanged();
-                        for (DocumentSnapshot document : task.getResult().getDocuments()) {
-                            ViewAllProducts viewAllProducts2 = document.toObject(ViewAllProducts.class);
-                            viewAllProducts.add(viewAllProducts2);
-                            viewAllAdapter.notifyDataSetChanged();
-                        }
                     }
                 }
             });
