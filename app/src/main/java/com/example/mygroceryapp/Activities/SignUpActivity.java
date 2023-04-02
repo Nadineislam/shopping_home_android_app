@@ -11,13 +11,11 @@ import com.example.mygroceryapp.MainActivity;
 import com.example.mygroceryapp.UserModel;
 import com.example.mygroceryapp.databinding.ActivitySignUpBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     ActivitySignUpBinding binding;
     FirebaseDatabase db;
-    DatabaseReference reference;
     FirebaseAuth auth;
 
     @Override
@@ -27,7 +25,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
-        reference = db.getReference("Users");
         binding.tvLog.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
@@ -55,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     UserModel userModel = new UserModel(username, email, password);
-                    if (task.getResult().getUser() != null && task.getResult().getUser().getEmail() != email ) {
+                    if (task.getResult().getUser() != null) {
                         String id = task.getResult().getUser().getUid();
                         db.getReference().child("Users").child(id).setValue(userModel);
                         Intent intent = new Intent(getBaseContext(), MainActivity.class);

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        db=FirebaseDatabase.getInstance();
+        db = FirebaseDatabase.getInstance();
         setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -52,33 +52,31 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        View viewHeader=navigationView.getHeaderView(0);
-        TextView name=viewHeader.findViewById(R.id.tv_nameHeader);
-        TextView email =viewHeader.findViewById(R.id.tv_emailHeader);
-        CircleImageView iv=viewHeader.findViewById(R.id.iv_picHeader);
+        View viewHeader = navigationView.getHeaderView(0);
+        TextView name = viewHeader.findViewById(R.id.tv_nameHeader);
+        TextView email = viewHeader.findViewById(R.id.tv_emailHeader);
+        CircleImageView iv = viewHeader.findViewById(R.id.iv_picHeader);
 
-        String s = FirebaseAuth.getInstance().getUid();
+        String id = FirebaseAuth.getInstance().getUid();
 
+        if (id != null)
+            db.getReference().child("Users").child(id)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            UserModel userModel = snapshot.getValue(UserModel.class);
+                            if (userModel != null) {
+                                name.setText(userModel.getUserName());
+                                email.setText(userModel.getEmail());
+                                Glide.with(getBaseContext()).load(userModel.getProfile_picture()).into(iv);
+                            }
+                        }
 
-        db.getReference().child("Users").child(s)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserModel userModel=snapshot.getValue(UserModel.class);
-                        name.setText(userModel.getUserName());
-                        email.setText(userModel.getEmail());
-                        Glide.with(getBaseContext()).load(userModel.getProfile_picture()).into(iv);
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
-
+                        }
+                    });
 
 
     }

@@ -50,7 +50,6 @@ public class MyCartFragment extends Fragment {
                     if (task.isSuccessful()) {
                         for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
                             String documentId = documentSnapshot.getId();
-
                             CartProducts cartProducts2 = documentSnapshot.toObject(CartProducts.class);
                             cartProducts2.setDocumentId(documentId);
                             cartProducts.add(cartProducts2);
