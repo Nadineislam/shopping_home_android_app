@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/login_bg"
-        tools:layout_editor_absoluteX="108dp" />
+         />
 
     <EditText
         android:id="@+id/sign_email"
@@ -43,7 +43,6 @@
         android:drawableStart="@drawable/ic_baseline_lock_24"
         android:drawablePadding="10dp"
         android:hint="@string/password_sign"
-        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +58,6 @@
         android:drawableStart="@drawable/ic_baseline_person_pin_24"
         android:drawablePadding="10dp"
         android:hint="@string/username"
-        android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

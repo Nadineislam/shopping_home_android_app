@@ -19,6 +19,7 @@ public class DetailsActivity extends AppCompatActivity {
     ActivityDetailsBinding binding;
     int quantity = 1;
     int totalPrice = 0;
+    StringBuilder stringBuilder=new StringBuilder();
     FirebaseFirestore fireStore;
     FirebaseAuth firebaseAuth;
 
@@ -33,7 +34,8 @@ public class DetailsActivity extends AppCompatActivity {
         if (viewAllProducts != null) {
 
             Glide.with(getApplicationContext()).load(viewAllProducts.getImage()).into(binding.ivDetails);
-            binding.tvPriceDetails.setText("Price: " + viewAllProducts.getPrice() + " L.E");
+            stringBuilder.append("Price: ").append(viewAllProducts.getPrice()).append(" L.E");
+            binding.tvPriceDetails.setText(stringBuilder);
             binding.tvDescDetail.setText(viewAllProducts.getDescription());
             totalPrice = viewAllProducts.getPrice() * quantity;
             binding.ivAdd.setOnClickListener(view -> {

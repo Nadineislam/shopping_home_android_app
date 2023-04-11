@@ -75,11 +75,7 @@ public class MyCartFragment extends Fragment {
             totalAmount += cartList2.getTotalPrice();
         }
         stringBuilder =new StringBuilder();
-         String total_amount=" Total Amount= ";
-        String priceSignatures=" L.E";
-        stringBuilder.append(total_amount);
-        stringBuilder.append(totalAmount);
-        stringBuilder.append(priceSignatures);
+        stringBuilder.append("Total Amount= ").append(totalAmount).append(" L.E");
         binding.tvCartPrice.setText(stringBuilder);
     }
 

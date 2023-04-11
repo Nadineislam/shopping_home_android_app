@@ -31,7 +31,7 @@
         android:layout_marginTop="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textStyle="italic"
-        android:text="Welcome to our application!" />
+        tools:text="Welcome to our application!" />
     <TextView
         android:id="@+id/tv_emailHeader"
         android:layout_width="match_parent"

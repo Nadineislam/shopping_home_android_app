@@ -60,8 +60,8 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Hello " + username, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    binding.signEmail.setError("this email is already used before!");
-                    binding.signEmail.requestFocus();
+                    if(task.getException()!=null)
+                    Toast.makeText(getBaseContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
 
